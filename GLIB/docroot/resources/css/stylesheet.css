@@ -1,0 +1,30 @@
+@CHARSET "ISO-8859-1";
+
+body{
+	background: #CCFFFF;
+}
+
+.title{
+	background: #99FFFF; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#99FFFF, #339999); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#99FFFF, #339999); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#99FFFF, #339999); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#99FFFF, #339999); /* Standard syntax */
+	height: 80px;
+	text-align: center;
+}
+
+.grad {
+    background: #99FFFF; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#99FFFF, #339999); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#99FFFF, #339999); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#99FFFF, #339999); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#99FFFF, #339999); /* Standard syntax */
+}
+
+.secondaryTitle{
+	font-family: Verdana;
+	font-weight: 12;
+	font-style: bold;
+	margin: 200px;
+}
