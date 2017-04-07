@@ -1,0 +1,38 @@
+<!-- /** -->
+<!--  * Project gbookstore -->
+<!--  * Alumno: Miguel Borja Abril Zamarro -->
+<!--  * Consultor: Albert Grau -->
+<!--  * Trabajo final del grado -->
+<!--  * UOC 2017 -->
+<!--  *  -->
+<!--  */ -->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="headerView.xhtml">
+		<ui:define name="content">
+			<h:outputLabel styleClass="secondaryTitle">BIENVENIDOS AL RINCÓN PARA QUE VUESTRA IMAGINACIÓN VIAJE</h:outputLabel>
+			<br/><br/><br/><br/><br/>
+			<p:layoutUnit position="right">
+				<p:link value="Registrarse">
+				</p:link>
+			</p:layoutUnit>
+			<p:layoutUnit position="center">
+				<h:outputLabel>Usuario</h:outputLabel>
+				&nbsp;
+				<p:inputText />
+				<br/>
+				<h:outputLabel>Contraseña</h:outputLabel>
+				&nbsp;
+				<p:password />
+				<br/>
+				<p:commandButton value="Iniciar sesión" id="login" />
+    		</p:layoutUnit>
+		</ui:define>
+	</ui:composition>
+</html>

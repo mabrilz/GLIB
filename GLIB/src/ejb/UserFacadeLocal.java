@@ -11,6 +11,6 @@ import jpa.UserJPA;
 @Local
 public interface UserFacadeLocal {
 
-	public UserJPA registerUser(String nif, String email, String name, String surname, List<PhoneJPA> phones, AddressJPA address);
+	public UserJPA registerUser(String nif, String email, String name, String surname, String password, List<PhoneJPA> phones, AddressJPA address);
 	
 }

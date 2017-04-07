@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import enums.Profile;
@@ -34,6 +35,10 @@ public class UserJPA implements Serializable{
 	@Column(nullable=false, unique=true, length=60)
 	private String email;
 	
+	/** The password */
+	@Column(nullable=false, length=120)
+	private String password;
+	
 	@Column(nullable=false, length=20)
 	@Enumerated(EnumType.STRING)
 	private Profile profile;
@@ -52,6 +57,13 @@ public class UserJPA implements Serializable{
 	joinColumns=@JoinColumn(name="user_id"),
 	inverseJoinColumns=@JoinColumn(name="phone_id"))
 	private List<PhoneJPA> phones;
+	
+	
+	@OneToOne(mappedBy="user")
+	@JoinTable(name="User_Address",
+	joinColumns=@JoinColumn(name="user_id"),
+	inverseJoinColumns=@JoinColumn(name="address_id"))
+	private AddressJPA address;
 	
 	public String getNif(){
 		return nif;
@@ -85,6 +97,22 @@ public class UserJPA implements Serializable{
 		this.email = email;
 	}
 	
+	/**
+	 * Getter method of the attribute password
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * Setter method of the attribute password
+	 * @param password the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	public Profile getProfile(){
 		return profile;
 	}
@@ -115,5 +143,21 @@ public class UserJPA implements Serializable{
 	
 	public void setForcePasswordChange(Boolean forcePasswordChange){
 		this.forcePasswordChange = forcePasswordChange;
+	}
+	
+	public List<PhoneJPA> getPhones(){
+		return phones;
+	}
+	
+	public void setPhones(List<PhoneJPA> phones){
+		this.phones = phones;
+	}
+	
+	public AddressJPA getAddress(){
+		return address;
+	}
+	
+	public void setAddress(AddressJPA address){
+		this.address = address;
 	}
 }
