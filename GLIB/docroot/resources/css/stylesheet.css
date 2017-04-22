@@ -24,7 +24,23 @@ body{
 
 .secondaryTitle{
 	font-family: Verdana;
-	font-weight: 12;
+	font-weight: 11;
 	font-style: bold;
 	margin: 200px;
+}
+
+.formLabel{
+	font-family: Verdana;
+	font-weight: 11;
+	color: rgb(47,79,79);
+}
+
+.button{
+	font-family: 12px verdana bold;
+	font-weight: 12;
+	font-style: bold;
+	color: #339999;
+	-moz-border-radius:20px;
+	border-radius:10px;
+	background-color:rgb(223,223,223)
 }

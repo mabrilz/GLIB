@@ -5,7 +5,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,8 +19,20 @@ public class PhoneJPA implements Serializable{
 	@Column(nullable = false, length=12)
 	private String number;
 	
-	@ManyToOne
-	private UserJPA user;
+	/**
+	 * Default constructor
+	 */
+	public PhoneJPA()
+	{		
+	}
+	
+	/**
+	 * Constructor that sets the phone number, storing it into the appropiate attribute
+	 * @param number
+	 */
+	public PhoneJPA(String number){
+		this.number = number;
+	}
 	
 	public long getId(){
 		return id;

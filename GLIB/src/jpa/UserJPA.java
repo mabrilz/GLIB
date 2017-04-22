@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import enums.Profile;
@@ -52,16 +51,14 @@ public class UserJPA implements Serializable{
 	@Column(nullable=false)
 	private Boolean forcePasswordChange;
 	
-	@OneToMany(mappedBy="user")
+	@OneToMany
 	@JoinTable(name="User_Phones",
-	joinColumns=@JoinColumn(name="user_id"),
+	joinColumns=@JoinColumn(name="nif"),
 	inverseJoinColumns=@JoinColumn(name="phone_id"))
 	private List<PhoneJPA> phones;
 	
-	
-	@OneToOne(mappedBy="user")
 	@JoinTable(name="User_Address",
-	joinColumns=@JoinColumn(name="user_id"),
+	joinColumns=@JoinColumn(name="nif"),
 	inverseJoinColumns=@JoinColumn(name="address_id"))
 	private AddressJPA address;
 	

@@ -1,5 +1,7 @@
 package managedbean;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -18,7 +20,11 @@ import utils.Helper;
 
 @ManagedBean(name="registerUser")
 @SessionScoped
-public class RegisterUser {
+public class RegisterUser implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1338543122451956749L;
 	/**
 	 * The user's email, used as id to log in the application
 	 */
@@ -46,9 +52,14 @@ public class RegisterUser {
 	/**
 	 * The user's phone
 	 */
-	private List<PhoneJPA> phones;
+	private List<String> phones = new ArrayList<String>();;
 	
-	private AddressJPA address;
+	private String newPhone;
+	
+	/**
+	 * The user's address
+	 */
+	private String address;
 	
 	 @EJB
 	 private UserFacadeRemote userRemote;
@@ -144,7 +155,7 @@ public class RegisterUser {
 	 * Setter method of the phone attribute
 	 * @param phone the phone of the user to be set
 	 */
-	public void setPhones(List<PhoneJPA> phones){
+	public void setPhones(List<String> phones){
 		this.phones = phones;
 	}
 	
@@ -152,15 +163,15 @@ public class RegisterUser {
 	 * Getter method of the phone attribute
 	 * @return the phone of the user
 	 */
-	public List<PhoneJPA> getPhones(){
+	public List<String> getPhones(){
 		return phones;
 	}
 	
-	public AddressJPA getAddress(){
+	public String getAddress(){
 		return address;
 	}
 	
-	public void setAddress(AddressJPA address){
+	public void setAddress(String address){
 		this.address = address;
 	}
 	
@@ -178,10 +189,6 @@ public class RegisterUser {
 	 */
 	public String getPassword2(){
 		return password2;
-	}
-	
-	public String loadFormRegisterUser(){
-		return "registerUserView";
 	}
 	
 	/**
@@ -207,14 +214,25 @@ public class RegisterUser {
 	public void surnameChanged(ValueChangeEvent evt){
 		surname = evt.getNewValue().toString();
 	}
+	
+	/**
+	 * Method that is invoked from the facelet login, updating the value stored in the address attribute
+	 * @param evt this parameter stores the new value updated
+	 */
+	public void addressChanged(ValueChangeEvent evt){
+		address = evt.getNewValue().toString();
+	}
 
 	/**
 	 * Method that is invoked from the facelet login, updating the value stored in the phone attribute
 	 * @param evt this parameter stores the new value updated
 	 */
 	public void phoneChanged(ValueChangeEvent evt){
-//		phone = evt.getNewValue().toString();
-		// TODO PTE PHONES
+		newPhone = evt.getNewValue().toString();
+	}
+	
+	public void addPhone(){
+		phones.add(newPhone);
 	}
 
 	/**
@@ -241,6 +259,10 @@ public class RegisterUser {
 		email = evt.getNewValue().toString();
 	}
 	
+	public String loadFormRegisterUser(){
+		return "registerUserView";
+	}
+	
 	/**
 	 * Method that validates the data introduced by the user, when the data is updated.
 	 * @param validatePassword true if the password will be validated (only if the user introduces a password)
@@ -258,8 +280,9 @@ public class RegisterUser {
 			return false;
 		}
 		try{
-//			Long.valueOf(phone);
-			// TODO PTE TRATAR TLFS
+			for(String phone: phones){
+				Long.valueOf(phone);
+			}
 		}
 		catch (Exception ex){
 			return false;
@@ -275,19 +298,27 @@ public class RegisterUser {
 	 * @return view to be shown to the user
 	 */
 	public String registerUser(){
+		String result = "registerUserOk";
 		try{
 			if(validateData()){
 				Properties props = System.getProperties();
 				Context ctx = new InitialContext(props);
-				userRemote = (UserFacadeRemote) ctx.lookup("java:app/Lang4AllPDS.jar/UserFacadeBean!ejb.UserFacadeRemote");
-				UserJPA user = userRemote.registerUser(nif, email, name, surname, Helper.encrypt(password), phones, address);
-				setNif(user.getNif());
-				setName(user.getName());
-				setSurname(user.getSurname());
-				setEmail(user.getEmail());
-//				setPhone(user.getPhone());
-				// TODO PTE ASIGNAR TLFS
-				return "loginView";
+				userRemote = (UserFacadeRemote) ctx.lookup("java:app/GLIB.jar/UserFacadeBean!ejb.UserFacadeRemote");
+				AddressJPA addressjpa = new AddressJPA();
+				List<PhoneJPA> phonesjpa = new ArrayList<PhoneJPA>();
+				for(String phone: phones){
+					phonesjpa.add(new PhoneJPA(phone));
+				}
+				UserJPA user = userRemote.registerUser(nif, email, name, surname, Helper.encrypt(password), phonesjpa, addressjpa);
+				if(user!=null){
+					setNif(user.getNif());
+					setName(user.getName());
+					setSurname(user.getSurname());
+					setEmail(user.getEmail());
+					setPhones(phones);
+				}
+				else result = "errorView";
+				return result;
 			}
 			else{
 				return "checkRegisterDataView";

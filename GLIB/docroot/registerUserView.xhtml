@@ -1,5 +1,5 @@
 <!-- /** -->
-<!--  * Project gbookstore -->
+<!--  * Project GLIB -->
 <!--  * Alumno: Miguel Borja Abril Zamarro -->
 <!--  * Consultor: Albert Grau -->
 <!--  * Trabajo final del grado -->
@@ -16,23 +16,90 @@
 
 	<ui:composition template="headerView.xhtml">
 		<ui:define name="content">
-			<h:outputLabel styleClass="secondaryTitle">BIENVENIDOS AL RINCÓN PARA QUE VUESTRA IMAGINACIÓN VIAJE</h:outputLabel>
 			<br/><br/><br/><br/><br/>
-			<p:layoutUnit position="right">
-				<p:link value="Registrarse">
-				</p:link>
+    		<p:layoutUnit position="center">
+				<h:outputLabel align="center" value="Formulario de registro" styleClass="secondaryTitle"/>
 			</p:layoutUnit>
 			<p:layoutUnit position="center">
-				<h:outputLabel>Usuario</h:outputLabel>
-				&nbsp;
-				<p:inputText />
+				<h:outputLabel align="center" value="INSTRUCCIONES" style="font: bold 12px verdana; color: rgb(47,79,79);"/>
 				<br/>
-				<h:outputLabel>Contraseña</h:outputLabel>
-				&nbsp;
-				<p:password />
 				<br/>
-				<p:commandButton value="Iniciar sesión" id="login" />
+				<h:outputLabel align="center" value="El email debe ajustarse al formato adecuado habitual: test@mail.com"  styleClass="formLabel"/>
+				<br/>
+				<h:outputLabel align="center" value="La contraseña debe tener 8 caracteres al menos de longitud, un caracter especial (*, $, #, ...), una mayúscula, una minúscula y un número. Se debe introducir dos veces para verificar que se ha escrito correctamente."  styleClass="formLabel"/>
+				<br/>
+				<h:outputLabel align="center" value="El NIF debe ser válido, incluyendo la letra"  styleClass="formLabel"/>
+				<br/>
+				<h:outputLabel align="center" value="No se pueden introducir valores numéricos en el nombre o los apellidos"  styleClass="formLabel"/>
+				<br/>
+				<h:outputLabel align="center" value="Se recomienda no introducir la contraseña hasta que no haya finalizado de añadir teléfonos de contacto.
+				Una vez haya terminado de introducir teléfonos, introduza la contraseña (y otros campos pendientes), y pulse Registrarse."  styleClass="formLabel"/>
+				<br/>
+				<h:outputLabel align="center" value="Todos los campos son obligatorios"  styleClass="formLabel"/>
+				<br/>
     		</p:layoutUnit>
+			<br/>
+			<div align="center">
+				<h:form>
+					<br/>
+					<h:outputLabel align="center" value="NIF"  styleClass="formLabel"/>
+					&nbsp;
+					<p:inputText align="center" value = "#{registerUser.nif}" readonly="false" immediate="true" id="nif" valueChangeListener="#{registerUser.nifChanged}"  styleClass="formLabel"/>							
+					<h:outputLabel align="center" value="*" immediate="true"  styleClass="formLabel"/>
+					<br/>
+					<br/>
+					<h:outputLabel align="center" value="Email"  styleClass="formLabel"/>
+					&nbsp;
+					<p:inputText align="center" value = "#{registerUser.email}" readonly="false" immediate="true" id="email" valueChangeListener="#{registerUser.emailChanged}"  styleClass="formLabel"/>							
+					<h:outputLabel align="center" value="*" immediate="true"  styleClass="formLabel"/>
+					<br/>
+					<br/>
+					<h:outputLabel align="center" value="Contraseña"  styleClass="formLabel"/>
+					&nbsp;
+					<p:password align="center" value = "#{registerUser.password}" readonly="false" immediate="true" id="password" valueChangeListener="#{registerUser.passwordChanged}"  styleClass="formLabel"/>							
+					<h:outputLabel align="center" value="*" immediate="true"  styleClass="formLabel"/>
+					<br/>
+					<br/>
+					<h:outputLabel align="center" value="Contraseña"  styleClass="formLabel"/>
+					&nbsp;
+					<p:password align="center" value = "#{registerUser.password2}" readonly="false" immediate="true" id="password2" valueChangeListener="#{registerUser.password2Changed}"  styleClass="formLabel"/>							
+					<h:outputLabel align="center" value="*" immediate="true"  styleClass="formLabel"/>
+					<br/>
+					<br/>
+					<h:outputLabel align="center" value="Nombre"  styleClass="formLabel"/>
+					&nbsp;
+					<p:inputText align="center" value = "#{registerUser.name}" readonly="false" immediate="true" id="name" valueChangeListener="#{registerUser.nameChanged}"  styleClass="formLabel"/>							
+					<h:outputLabel align="center" value="*" immediate="true"  styleClass="formLabel"/>
+					<br/>
+					<br/>
+					<h:outputLabel align="center" value="Apellidos"  styleClass="formLabel"/>
+					&nbsp;
+					<p:inputText align="center" value = "#{registerUser.surname}" readonly="false" immediate="true" id="surname" valueChangeListener="#{registerUser.surnameChanged}"  styleClass="formLabel"/>							
+					<h:outputLabel align="center" value="*" immediate="true"  styleClass="formLabel"/>
+					<br/>
+					<br/>
+					<h:outputLabel align="center" value="Dirección"  styleClass="formLabel"/>
+					&nbsp;
+					<p:inputText align="center" value = "#{registerUser.address}" readonly="false" immediate="true" id="address" valueChangeListener="#{registerUser.addressChanged}"  styleClass="formLabel"/>							
+					<h:outputLabel align="center" value="*" immediate="true" styleClass="formLabel"/>
+					<br/>
+					<br/>
+					<h:outputLabel align="center" value="Teléfonos" styleClass="formLabel"/>
+					&nbsp;
+					<p:inputText align="center" readonly="false" immediate="true" id="phones" valueChangeListener="#{registerUser.phoneChanged}"  styleClass="formLabel"/>
+					&nbsp;
+					<h:outputLabel align="center" value="*" immediate="true"  styleClass="formLabel"/>
+					&nbsp;
+					<p:commandButton value="Añadir" id="add" actionListener="#{registerUser.addPhone}" styleClass="button"/>
+					&nbsp;
+					<h:dataTable value="#{registerUser.phones}" var="phone">
+				        <h:column><h:outputLabel value="#{phone}" /></h:column>
+				    </h:dataTable>
+					<br/>
+					<br/>
+					<p:commandButton value="Registrarse" id="register" action="#{registerUser.registerUser}" immediate="true" styleClass="button"/>
+				</h:form>
+			</div>
 		</ui:define>
 	</ui:composition>
 </html>

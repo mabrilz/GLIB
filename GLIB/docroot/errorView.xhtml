@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<!-- /** -->
+<!--  * Project GLIB -->
+<!--  * Alumno: Miguel Borja Abril Zamarro -->
+<!--  * Consultor: Albert Grau -->
+<!--  * Trabajo final del grado -->
+<!--  * UOC 2017 -->
+<!--  *  -->
+<!--  */ -->
+<ui:composition template="./headerView.xhtml">
+	<ui:define name="content">
+		<div class="content" align="center">
+			<br/>
+			<h:outputLabel align="center" value="Error. En caso de duda contacte con el administrador." style="font: 12px verdana; color: rgb(47,79,79);"/>
+			<br/>
+			<br/>
+			<p:commandButton value="Volver" action="history.go(-1)" styleClass="button"/>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>
