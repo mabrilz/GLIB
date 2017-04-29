@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- /** -->
+<!--  * Project GLIB -->
+<!--  * Alumno: Miguel Borja Abril Zamarro -->
+<!--  * Consultor: Albert Grau -->
+<!--  * Trabajo final del grado -->
+<!--  * UOC 2017 -->
+<!--  *  -->
+<!--  */ -->
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"	
+	xmlns:p="http://primefaces.org/ui">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>GLIB</title>
+</head>
+
+<h:body>
+<link rel="stylesheet" type="text/css" href="resources/css/stylesheet.css"/>
+ <div id="layout">
+	<div id="top" class="top">
+		<ui:insert name="top">
+			<p:outputPanel deferred="false">
+        		<p class="title">LIBRERIA AYM</p>
+    		</p:outputPanel>
+<!-- 			<table width="100%" cellspacing="0" border="0"> -->
+<!-- 			background="#{resource['images:bkg-topbar.gif']};" -->
+<!-- 			  <tr> -->
+<!-- 			    <td width="26"><img border="0"/></td> -->
+<!-- 			    src="#{resource['images:lang4all.jpg']}"   -->
+<!-- 			  </tr> -->
+<!-- 			</table> -->
+		</ui:insert>
+	</div>	
+	<div id="content">
+		<ui:insert name="content">Content</ui:insert>
+	</div>
+ </div>
+</h:body>
+</html>

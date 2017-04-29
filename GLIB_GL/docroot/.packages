@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><packages version="1.3">
+  <package exploded="false" inWorkspace="true" name="GLIB.war" todir="/GLIB" type="jar">
+    <fileset dir="docroot" flatten="false" inWorkspace="true" includes="**">
+      <properties/>
+    </fileset>
+    <folder name="WEB-INF">
+      <folder name="classes">
+        <fileset dir="bin" excludes="META-INF/*" flatten="false" inWorkspace="true" includes="**">
+          <properties/>
+        </fileset>
+        <properties/>
+      </folder>
+      <properties/>
+    </folder>
+    <properties>
+      <property name="org.jboss.ide.eclipse.as.core.packages.ModuleIDPropertyKey" value="14886558326244400336765923864-937506573"/>
+    </properties>
+  </package>
+  <package exploded="false" inWorkspace="true" name="GLIB.jar" todir="/GLIB" type="jar">
+    <fileset dir="bin" excludes="managedbean/*, log4j.properties, META-INF/application.xml" flatten="false" inWorkspace="true" includes="**">
+      <properties/>
+    </fileset>
+    <fileset dir="docroot" excludes="resources/,WEB-INF/*xml,*xhtml" flatten="false" inWorkspace="true" includes="**">
+      <properties/>
+    </fileset>
+    <properties>
+      <property name="org.jboss.ide.eclipse.as.core.packages.ModuleIDPropertyKey" value="1492625356147234075935313429190031483"/>
+    </properties>
+  </package>
+  <package exploded="false" inWorkspace="true" name="GLIB.ear" type="jar">
+    <fileset dir="" flatten="false" inWorkspace="true" includes="*.war, *.jar">
+      <properties/>
+    </fileset>
+    <folder name="META-INF">
+      <fileset dir="src/META-INF" flatten="false" inWorkspace="true" includes="application.xml">
+        <properties/>
+      </fileset>
+      <properties/>
+    </folder>
+    <properties>
+      <property name="org.jboss.ide.eclipse.as.core.packages.ModuleIDPropertyKey" value="14926255476862340950891927906-937506573"/>
+    </properties>
+  </package>
+  <properties/>
+</packages>
