@@ -157,4 +157,10 @@ public class UserJPA implements Serializable{
 	public void setAddress(AddressJPA address){
 		this.address = address;
 	}
+	
+	@Override
+	public String toString(){
+		return name + " " + surname;
+	}
+
 }
